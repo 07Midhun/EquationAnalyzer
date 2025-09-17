@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Physics / Knowledge Lookup</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label>Ask a question (e.g., "Who formulated E=mc^2?" or "Ohm's law")</label><br>
+    <input type="text" name="question" style="width:60%;"><br><br>
+
+    <label>Optional: upload a TXT or PDF (with equations)</label><br>
+    <input type="file" name="file" accept=".txt,.pdf"><br><br>
+
+    <button type="submit">Search</button>
+  </form>
+
+  {% if results %}
+    <h2>Matched Equations</h2>
+    {% for r in results %}
+      <div class="eq-box">
+        <b>Equation:</b> <span style="font-family:serif;">\\({{ r.equation }}\\)</span><br>
+        <b>Author:</b> {{ r.author }}<br>
+        <b>Description:</b> {{ r.description }}<br>
+        <b>Variables:</b>
+        <ul>
+          {% for k,v in r.variables.items() %}
+            <li>{{ k }} : {{ v }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if unrecognized %}
+    <h3>Unrecognized / Found in uploaded file</h3>
+    <ul>
+      {% for u in unrecognized %}
+        <li>{{ u }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NLP Equation Analyzer</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+        h1 { color: #333; }
+        .eq-box { background: #eee; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .unrecognized { color: red; }
+    </style>
+</head>
+<body>
+    <h1>NLP Equation Analyzer</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Ask a question (e.g., "Who formulated E=mc^2?")</label><br>
+        <input type="text" name="question" style="width:60%;" value="{{ query }}"><br><br>
+
+        <label>Optional: upload a TXT or PDF (with equations)</label><br>
+        <input type="file" name="file"><br><br>
+
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <h2>Matched Equations</h2>
+        {% for r in results %}
+            <div class="eq-box">
+                <b>Equation:</b> <span style="font-family:serif;">\\({{ r.equation }}\\)</span><br>
+                <b>Author:</b> {{ r.info.author }}<br>
+                <b>Description:</b> {{ r.info.description }}<br>
+                <b>Variables:</b>
+                <ul>
+                    {% for k, v in r.info.variables.items() %}
+                        <li>{{ k }} : {{ v }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if unrecognized %}
+        <h3>Unrecognized Equations / Found in uploaded file</h3>
+        <ul>
+        {% for u in unrecognized %}
+            <li>{{ u }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,4 @@
+E=mc^2|Albert Einstein|E:Energy,m:Mass,c:Speed of light|Energy-mass equivalence
+F=ma|Isaac Newton|F:Force,m:Mass,a:Acceleration|Newton's second law
+a^2+b^2=c^2|Pythagoras|a:Side a,b:Side b,c:Hypotenuse|Pythagorean theorem
+V=IR|Georg Ohm|V:Voltage,I:Current,R:Resistance|Ohm's law

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Math Equation Solver</h1>
+  <form method="POST">
+    <label>Enter equation (e.g., x^2+2*x+1)</label><br>
+    <input type="text" name="equation" style="width:60%;" required>
+    <button type="submit">Solve</button>
+  </form>
+
+  {% if steps %}
+    <h2>Step by Step Solution</h2>
+    <ol>
+      {% for s in steps %}
+        <li>{{ s }} <audio controls src="{{ url_for('static', filename='step_' ~ loop.index0 ~ '.mp3') }}"></audio></li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+{% endblock %}

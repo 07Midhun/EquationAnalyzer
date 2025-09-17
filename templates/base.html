@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NLP Equation Analyzer</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+        .nav { margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; font-weight: bold; }
+        .eq-box { background: #eee; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .unrecognized { color: red; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="/math">Math</a>
+        <a href="/physics">Physics</a>
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>
